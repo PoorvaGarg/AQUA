@@ -30,8 +30,8 @@ public class AnalysisRunner {
         String tempFileName = stanfile.replace(".stan", "");
         String templateCode = stan2IRTranslator.getCode();
 
-        // System.out.println("========Stan Code to Template=======");
-        // System.out.println(templateCode);
+        System.out.println("========Stan Code to Template=======");
+        System.out.println(templateCode);
 
         File tempfile = null;
         try {
@@ -77,7 +77,8 @@ public class AnalysisRunner {
         intervalAnalyzer.setSummaryFile(stansummary);
 
         // Start analysis
-        Integer intSplits = 61;
+        // Integer intSplits = 61;
+        Integer intSplits = Integer.valueOf(splits);
 
         if (inf_cont)
             intervalAnalyzer.maxCounts = 11;
@@ -133,12 +134,12 @@ public class AnalysisRunner {
         if (args[0].endsWith("template")) {
             String localDirPSI = "";
             System.out.println(localDirPSI + args[0]);
-            AnalysisRunner.analyzeTemplate(localDirPSI, args[0], "61");
+            AnalysisRunner.analyzeTemplate(localDirPSI, args[0], args[1]);
         }
         else {
             String localDir = "";
             System.out.println(localDir + args[0]);
-            AnalysisRunner.analyzeProgram(localDir, args[0], "61"); // args[1]
+            AnalysisRunner.analyzeProgram(localDir, args[0], args[1]); // args[1]
         }
     }
 

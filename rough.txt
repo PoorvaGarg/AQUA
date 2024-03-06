@@ -1,0 +1,4 @@
+benchmarks/new/coinBias/coinBias.template
+d1: [1.0E-9 0.9000000000999998]
+Current Splits: 999
+Analysis Time (s): benchmarks/new/coinBias,1.016945974

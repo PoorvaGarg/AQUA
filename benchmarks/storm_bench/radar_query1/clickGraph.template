@@ -1,0 +1,28 @@
+float similarityAll
+similarityAll = beta(1, 1)
+float click0[5] : [1, 1, 1, 0, 0]
+float click1[5] : [1, 1, 1, 0, 0]
+
+float sim[5]
+float beta1
+float beta2
+float sim0
+float sim1
+for (i in 1:5){
+    sim[i] = flip(similarityAll)
+    beta1 = beta(1, 1)
+    beta2 = beta(1, 1)
+    if (sim[i]) {
+        sim0 = flip(beta1)
+        hardObserve(sim0 == click0[i])
+        sim1 = flip(beta1)
+        hardObserve(sim1 == click1[i])
+    } else {
+        sim0 = flip(beta1)
+        hardObserve(sim0 == click0[i])
+        sim1 = flip(beta2)
+        hardObserve(sim1 == click1[i])
+    }
+    
+}
+return(similarityAll)

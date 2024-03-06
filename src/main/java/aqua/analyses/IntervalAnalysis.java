@@ -149,6 +149,7 @@ public class IntervalAnalysis {
     }
 
     public boolean getNewRange() {
+        
         boolean single = false;
         for (String paramName: majorParam) {
             String txt1File = path + "/analysis_" + paramName + ".txt";
@@ -165,6 +166,8 @@ public class IntervalAnalysis {
             Double[] meanSd = paramMap.get(paramName).getKey();
             meanSd[0] = lastVal.getDouble(max(firstGt-1, 0));
             meanSd[1] = lastVal.getDouble(min(lastGt+1, lastVal.length() - 1));
+            // meanSd[0] = -10.0;
+            // meanSd[1] = 10.0;
             System.out.println(String.format("%s: [%s %s]",paramName, meanSd[0], meanSd[1]));
         }
         return single;
@@ -2101,12 +2104,14 @@ public class IntervalAnalysis {
             lower = limitsMeanSd[2] - 6 *limitsMeanSd[3];
             upper = limitsMeanSd[2] + 6 *limitsMeanSd[3];
         } else { // all are null
-            // System.out.println("Prior: Normal");
+            System.out.println("Prior: Normal");
             lower = -50;
             upper = 50;
         }
         lulimits[0] = lower;
         lulimits[1] = upper;
+        // lulimits[0] = -10.0;
+        // lulimits[1] = 10.0;
     }
 
 
@@ -2736,6 +2741,7 @@ public class IntervalAnalysis {
             meanSd[3] = funcParams.get(1);
         }
         double[] lulimits = new double[2];
+        
         getUnifSplitLimits(meanSd, lulimits);
         // AbstractRealDistribution splitDistr = null;
         switch (distrName) {
